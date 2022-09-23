@@ -1,0 +1,13 @@
+# Directories
+.vscode/
+
+# SCM directories
+CVS/
+.svn/
+.hg/
+
+# Backup files
+*~
+*.bak
+\#*\#
+
