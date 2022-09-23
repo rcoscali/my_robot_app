@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  <form method="get" enctype="application/x-www-form-urlencoded" action="/run">
+  <table>
+    <tr>
+      <td>
+        p <a href="http://localhost/set_api_keys?exchange=binance">set Binance api key</a>
+      </td>
+      <td>
+        <input type="text" readonly name="binance_key" placeholder="Binance Key"/><br>
+        <input type="password" readonly name="binance_key_secret" placeholder="Binance Key Secret"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        p <a href="http://localhost/set_api_keys?exchange=ftx">set FTX api key & sub account</a>
+      </td>
+      <td>
+        <input type="text" readonly name="ftx_key" placeholder="FTX Key"/><br>
+        <input type="password" readonly name="ftx_key_secret" placeholder="FTX Key Secret"/><br>
+        <input type="text" readonly name="ftx_subaccount" placeholder="FTX subaccount"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        p <a href="http://localhost/set_api_keys?exchange=kraken">set Kraken api key</a>
+      </td>
+      <td>
+        <input type="text" readonly name="kraken_key" placeholder="Kraken Key"/><br>
+        <input type="password" readonly name="kraken_key_secret" placeholder="Kraken Key Secret"/>
+      </td>
+    </tr>
+  </table>
+  </form>  
+    

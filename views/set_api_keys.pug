@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Para #{content}
+  <form method="post" enctype="application/x-www-form-urlencoded" action="/post_api_keys">
+    API key:<br><input type="text" name="key" placeholder="... API key ..."><br>
+    API key secret:<br><input type="password" name="key_secret" placeholder="... API key secret ..."><br>
+    <div id="subaccount">
+      SubAccount name:<br><input type="text" name="subaccount" placeholder="... SubAccount name ...">
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+    
