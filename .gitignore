@@ -12,5 +12,3 @@ CVS/
 *.bak
 \#*\#
 
-# Package lock file
-package-lock.json
