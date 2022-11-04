@@ -1,5 +1,6 @@
 # Directories
 .vscode/
+node_modules/
 
 # SCM directories
 CVS/
@@ -11,3 +12,5 @@ CVS/
 *.bak
 \#*\#
 
+# Package lock file
+package-lock.json

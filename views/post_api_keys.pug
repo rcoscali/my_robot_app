@@ -3,9 +3,13 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  
   p API key: <span id="key">#{key}</span><br>
     API key secret:
   span(id="key_secret") #{key_secret}
-  <br/>
-    div(id="subaccount_display") SubAccount:
-    span(id="subaccount") #{subaccount}
+  br
+  div(id="subaccount_display")
+    | SubAccount:
+    | span(id="subaccount") #{subaccount}
+  input(type="button", value="Return", onClick="window.location='https://localhost/'")
+    

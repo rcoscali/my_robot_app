@@ -152,30 +152,39 @@ const keystoredb =
 				       var exchange = req.body.exchange;
 				       var subaccount = req.body.subaccount;
 				       console.log("*** /post_api_keys: Key = '"+key+"', key secret is '"+key_secret+"', exchange = '"+exchange+"', subaccount = '"+subaccount+"'");
-				       var exchangeId;
-				       app.keystoredb.all("SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"';",
-							  [], 
-							  (err, rows) => {
-							      if (err) {
-								  console.log('****** Get ftx exchange record: err = "'+err.message+'"');
-							      }
-							      else {
-								  rows.forEach((row) => {
-								      console.log('****** /post_api_keys: Got ftx exchange record with id "'+row.Id+'"');
-								      exchangeId = row.Id;
-								      app.keystoredb.run("INSERT INTO Keys (Key, ExchangeId, Secret) VALUES ('"+key+"', "+exchangeId+", '"+key_secret+"');");
-								      console.log('****** /post_api_keys: Added key into Keys (Key, ExchangeId, Secret) VALUES ("'+key+'", "'+exchangeId+'", "'+key_secret+'");');
-											 
-								  });
-							      }
-							  });
-				       res.render('post_api_keys',
-						  { 'title': 'POST API Keys',
-						    'key': key,
-						    'key_secret': key_secret,
-						    'subaccount': subaccount
-						  }
-						 );
+				       app.keystoredb.serialize(() => {
+					   app.keystoredb.all("SELECT Key, Secret, ExchangeId FROM Keys JOIN Exchanges ON Name LIKE '"+exchange+"' WHERE Key == '"+key+"';",
+							      [], 
+							      (err, rows) => {
+								  if (!rows.length) {
+								      console.log('****** Get ftx exchange record: err = "'+err.message+'"');
+								      app.keystoredb.run("INSERT INTO Keys (Key, ExchangeId, Secret) VALUES ('"+key+"', (SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"' LIMIT 1), '"+key_secret+"');");
+								      console.log('****** /post_api_keys: Added key into Keys (Key, ExchangeId, Secret) VALUES ("'+key+'", '+exchangeId+', "'+key_secret+'");');
+								      res.render('post_api_keys',
+										 { 'title': 'POST API Keys inserted',
+										   'key': key,
+										   'key_secret': key_secret,
+										   'subaccount': subaccount
+										 }
+										);
+								  }
+								  else {
+								      rows.forEach((row) => {
+									  console.log('****** /post_api_keys: Got ftx exchange record with id "'+row.Id+'"');
+									  exchangeId = row.Id;
+									  app.keystoredb.run("UPDATE Keys SET Key = '"+key+"', Secret = '"+key_secret+"' WHERE ExchangeId = ( SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"' LIMIT 1);")
+									  console.log('****** /post_api_keys: Modified key into Keys (Key, ExchangeId, Secret) VALUES ("'+key+'", "'+exchangeId+'", "'+key_secret+'");');
+									  res.render('post_api_keys',
+										     { 'title': 'POST API Keys modified',
+										       'key': key,
+										       'key_secret': key_secret,
+										       'subaccount': subaccount
+										     }
+										    );
+								      });
+								  }
+							      });
+				       });
 				   });
 
 				   /* GET delete_from_db page */

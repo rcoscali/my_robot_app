@@ -3,6 +3,9 @@ extends layout
 block content
   h1 #{title}
   p Welcome to #{title}
+
+  script(type="text/javascript", src="/javascripts/wait_db.js")
+  script(type="text/javascript") do_wait();
   script(type="text/javascript") var binanceKey='#{binanceKey}';
   script(type="text/javascript") var binanceSecret='#{binanceSecret}';
   script(type="text/javascript") var krakenKey='#{krakenKey}';
@@ -10,7 +13,6 @@ block content
   script(type="text/javascript") var ftxKey="#{ftxKey}";
   script(type="text/javascript") var ftxSecret='#{ftxSecret}';
   script(type="text/javascript") var ftxSubAccount="#{ftxSubAccount}";
-
   form(method="get", enctype="application/x-www-form-urlencoded", action="/run")
     table
       tr
@@ -50,4 +52,6 @@ block content
           input(type="text", readonly, id="kraken_key", name="kraken_key", placeholder="Kraken Key to set ...", value="")
           br
           input(type="password", readonly, id="kraken_key_secret", name="kraken_key_secret", placeholder="Kraken Key Secret to set ...", value="")
+  input(type="button", id="run_button", value="Run", onClick="", hidden)
   script(type="text/javascript", src="/javascripts/set_keys.js")
+  
