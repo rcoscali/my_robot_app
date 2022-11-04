@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  scripts
+    script(type="text/javascript", src="/javascripts/set_api_key.js")
+    script(type="text/javascript", src="/javascripts/set_param_values.js")
+
+  body(onLoad="getExchange();")
+    block content
