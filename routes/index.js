@@ -153,17 +153,18 @@ const keystoredb =
 				       var subaccount = req.body.subaccount;
 				       console.log("*** /post_api_keys: Key = '"+key+"', key secret is '"+key_secret+"', exchange = '"+exchange+"', subaccount = '"+subaccount+"'");
 				       app.keystoredb.serialize(() => {
-					   app.keystoredb.all("SELECT Key, Secret, ExchangeId FROM Keys JOIN Exchanges ON Name LIKE '"+exchange+"' WHERE Key == '"+key+"';",
-							      [], 
+					   app.keystoredb.all("SELECT Key, Secret, ExchangeId FROM Keys JOIN Exchanges ON Name LIKE ? WHERE Key == ?;",
+							      [exchange, key], 
 							      (err, rows) => {
+								  console.log('****** Get key record: nb of rows = "'+rows.length+'"');
 								  if (!rows.length) {
-								      console.log('****** Get ftx exchange record: err = "'+err.message+'"');
 								      app.keystoredb.run("INSERT INTO Keys (Key, ExchangeId, Secret) VALUES ('"+key+"', (SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"' LIMIT 1), '"+key_secret+"');");
-								      console.log('****** /post_api_keys: Added key into Keys (Key, ExchangeId, Secret) VALUES ("'+key+'", '+exchangeId+', "'+key_secret+'");');
+								      console.log('****** /post_api_keys: Added key into Keys (Key, Secret) VALUES ("'+key+'", "'+key_secret+'");');
 								      res.render('post_api_keys',
 										 { 'title': 'POST API Keys inserted',
 										   'key': key,
 										   'key_secret': key_secret,
+										   'exchange': exchange,
 										   'subaccount': subaccount
 										 }
 										);
@@ -178,6 +179,7 @@ const keystoredb =
 										     { 'title': 'POST API Keys modified',
 										       'key': key,
 										       'key_secret': key_secret,
+										       'exchange': exchange,
 										       'subaccount': subaccount
 										     }
 										    );
