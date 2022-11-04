@@ -161,7 +161,7 @@ const keystoredb =
 								      app.keystoredb.run("INSERT INTO Keys (Key, ExchangeId, Secret) VALUES ('"+key+"', (SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"' LIMIT 1), '"+key_secret+"');");
 								      console.log('****** /post_api_keys: Added key into Keys (Key, Secret) VALUES ("'+key+'", "'+key_secret+'");');
 								      res.render('post_api_keys',
-										 { 'title': 'POST API Keys inserted',
+										 { 'title': 'POST API Keys for exchange '+exchange+' inserted',
 										   'key': key,
 										   'key_secret': key_secret,
 										   'exchange': exchange,
@@ -176,7 +176,7 @@ const keystoredb =
 									  app.keystoredb.run("UPDATE Keys SET Key = '"+key+"', Secret = '"+key_secret+"' WHERE ExchangeId = ( SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"' LIMIT 1);")
 									  console.log('****** /post_api_keys: Modified key into Keys (Key, ExchangeId, Secret) VALUES ("'+key+'", "'+exchangeId+'", "'+key_secret+'");');
 									  res.render('post_api_keys',
-										     { 'title': 'POST API Keys modified',
+										     { 'title': 'POST API Keys for exchange '+exchange+' modified',
 										       'key': key,
 										       'key_secret': key_secret,
 										       'exchange': exchange,
