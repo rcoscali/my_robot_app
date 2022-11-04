@@ -14,10 +14,11 @@ var path = require('path');
 // Instanciate keystore DB
 const keystoredb =
       new sqlite3.Database('c:/Users/a047461/AppData/Local/myapp/keystore.db',
-			   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE | sqlite3.OPEN_FULLMUTEX | sqlite3.OPEN_PRIVATECACHE,
+			   sqlite3.OPEN_READWRITE | sqlite3.OPEN_FULLMUTEX | sqlite3.OPEN_PRIVATECACHE,
 			   (err) => {
 			       if (err) {
 				   console.error(err.message);
+				   process.exit(1);
 			       }
 			       else {
 				   console.log('****** Keystore DB openned !');
