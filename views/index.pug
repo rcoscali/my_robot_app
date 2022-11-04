@@ -1,48 +1,53 @@
 extends layout
 
 block content
-  h1= title
+  h1 #{title}
   p Welcome to #{title}
-  <form method="get" enctype="application/x-www-form-urlencoded" action="/run">
-  <table>
-    <tr>
-      <td>
-        p <a href="http://localhost/set_api_keys?exchange=binance">set Binance api key</a>
-      </td>
-      <td>
-        <input type="text" readonly name="binance_key" placeholder="Binance Key"/><br>
-        <input type="password" readonly name="binance_key_secret" placeholder="Binance Key Secret"/>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <hr>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        p <a href="http://localhost/set_api_keys?exchange=ftx">set FTX api key & sub account</a>
-      </td>
-      <td>
-        <input type="text" readonly name="ftx_key" placeholder="FTX Key"/><br>
-        <input type="password" readonly name="ftx_key_secret" placeholder="FTX Key Secret"/><br>
-        <input type="text" readonly name="ftx_subaccount" placeholder="FTX subaccount"/>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <hr>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        p <a href="http://localhost/set_api_keys?exchange=kraken">set Kraken api key</a>
-      </td>
-      <td>
-        <input type="text" readonly name="kraken_key" placeholder="Kraken Key"/><br>
-        <input type="password" readonly name="kraken_key_secret" placeholder="Kraken Key Secret"/>
-      </td>
-    </tr>
-  </table>
-  </form>  
-    
+  script(type="text/javascript") var binanceKey='#{binanceKey}';
+  script(type="text/javascript") var binanceSecret='#{binanceSecret}';
+  script(type="text/javascript") var krakenKey='#{krakenKey}';
+  script(type="text/javascript") var krakenSecret='#{krakenSecret}';
+  script(type="text/javascript") var ftxKey="#{ftxKey}";
+  script(type="text/javascript") var ftxSecret='#{ftxSecret}';
+  script(type="text/javascript") var ftxSubAccount="#{ftxSubAccount}";
+
+  form(method="get", enctype="application/x-www-form-urlencoded", action="/run")
+    table
+      tr
+        td
+          p
+            a(href="#", onClick="url='/set_api_keys?exchange=binance&Key='+document.getElementById('binance_key').value+'&Secret='+document.getElementById('binance_key_secret').value; window.location=url; ")
+                |  set Binance api key
+
+        td
+          input(type="text", readonly, id="binance_key", name="binance_key", placeholder="Binance Key to set ...", value="")
+          br
+          input(type="password", readonly, id="binance_key_secret", name="binance_key_secret", placeholder="Binance Key Secret to set ...", value="")
+
+      tr
+        td(colspan="2")
+          hr
+      tr
+        td
+          p
+            a(href="#", onClick="url='/set_api_keys?exchange=ftx&Key='+document.getElementById('ftx_key').value+'&Secret='+document.getElementById('ftx_key_secret').value+'&SubAccount='+document.getElementById('ftx_subaccount').value; window.location=url; ")
+              |  set FTX api key & sub account
+        td
+          input(type="text", readonly, id="ftx_key", name="ftx_key", placeholder="FTX Key to set ...", value="")
+          br
+          input(type="password", readonly, id="ftx_key_secret", name="ftx_key_secret", placeholder="FTX Key Secret to set ...", value="")
+          br
+          input(type="text", readonly, id="ftx_subaccount", name="ftx_subaccount", placeholder="FTX subaccount to set ...", value="")
+      tr
+        td(colspan="2")
+          hr
+      tr
+        td
+          p
+            a(href="#", onClick="url='/set_api_keys?exchange=kraken&Key='+document.getElementById('kraken_key').value+'&Secret='+document.getElementById('kraken_key_secret').value; window.location=url; ")
+              |  set Kraken api key
+        td
+          input(type="text", readonly, id="kraken_key", name="kraken_key", placeholder="Kraken Key to set ...", value="")
+          br
+          input(type="password", readonly, id="kraken_key_secret", name="kraken_key_secret", placeholder="Kraken Key Secret to set ...", value="")
+  script(type="text/javascript", src="/javascripts/set_keys.js")

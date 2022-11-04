@@ -5,21 +5,30 @@
  */
 
 var app = require('../app');
+const https = require('https');
 var debug = require('debug')('myapp:*,express:*');
+var fs = require('fs');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
+
+// Web server TLS options
+const options = {
+  key: fs.readFileSync('./tls/server.key'),
+  cert: fs.readFileSync('./tls/server.crt')
+};
+
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -28,7 +37,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-console.log('==> Web Server available on http://localhost/');
+console.log('==> Web Server available on https://localhost/');
 
 /**
  * Normalize a port into a number, string, or false.

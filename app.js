@@ -1,23 +1,44 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
 
+// Require http-errors for handling www server errors
+var createError = require('http-errors');
+// Require NodeJS Express framework
+var express = require('express');
+// Require https for www server with TLS 1.3
+const https = require('https');
+// Require FS for passing cert&key for https www server
+const fs = require('fs');
+// Require path for addressing static public dir for www server
+var path = require('path');
+// Require cookie parser as a middleware for handling cookies in http req/resp headers
+var cookieParser = require('cookie-parser');
+// Require body parser as a middleware for handling url encoded form params
+var bodyParser = require('body-parser');
+// Require morgan as a console/debug logger
+var logger = require('morgan');
+// Require routes index.js as index router
 var indexRouter = require('./routes/index');
+// Require routes users.js as users router (for resolving ~ notation)
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+app.use(function (req, res, next) {
+    console.log('Time: %d', Date.now());
+    next();
+});
+
+// Views engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Setup logger
 app.use(logger('dev'));
+// Setup body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// Setup cookie parser middleware
 app.use(cookieParser());
+// Setup static part of the server
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 

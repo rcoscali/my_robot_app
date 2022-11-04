@@ -1,15 +1,35 @@
-extends layout
+extends setkeys_layout
 
 block content
   h1= title
   p Welcome to #{title}
-  p Para #{content}
-  <form method="post" enctype="application/x-www-form-urlencoded" action="/post_api_keys">
-    API key:<br><input type="text" name="key" placeholder="... API key ..."><br>
-    API key secret:<br><input type="password" name="key_secret" placeholder="... API key secret ..."><br>
-    <div id="subaccount">
-      SubAccount name:<br><input type="text" name="subaccount" placeholder="... SubAccount name ...">
-    </div>
-    <input type="submit" value="Submit">
-  </form>
-    
+  p(id="exchangepara") Set API keys for exchange
+
+  form(id="setApiKeysForm", method="post", enctype="application/x-www-form-urlencoded", action="/post_api_keys")
+    table
+      tr
+        td(width="120pt")
+          | Key:
+        td
+          input(type="text", id="key", name="key", placeholder="... API key ...")
+      tr
+        td(width="120pt")
+          | Key Secret:
+        td
+          input(type="text", id="key_secret", name="key_secret", placeholder="... API key secret ...")
+
+    div(id="subaccount_div", hidden="true")
+      table
+        tr
+          td(width="120pt")
+            | SubAccount name:
+          td
+            input(type="text", id="subaccount", name="subaccount", placeholder="... SubAccount name ...", hidden="true")
+
+    input(id="exchange", type="text", name="exchange", value="", hidden="true")
+    input(type="submit", value="Submit", onClick="document.getElementById['exchange'].value=getExchange();")
+    input(type="button", value="Cancel", onClick="window.location='https://localhost'")
+    input(type="button", value="Delete from DB", onClick="url='https://localhost/delete_from_db?exchange='+getExchange()+'&key='+getKey(); window.location=url")
+    script(type="text/javascript", src="/javascripts/set_exchange_name.js")
+    script(type="text/javascript", src="/javascripts/disable_subaccount.js")
+    script(type="text/javascript", src="/javascripts/set_param_values.js")
