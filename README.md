@@ -6,6 +6,8 @@ views renderer.
 The app uses Exchanges API keys[^1] for tracking and duplicating orders. These are stored locally
 in an SQLite3 DB.
 
+> Please be aware this is a work in progress !!! 
+
 [^1]: Take care to the keys when dumping/restoring databases. Keys exposed here are not real keys but take care to yours.
 
 ## Clone repository
