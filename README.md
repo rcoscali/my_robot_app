@@ -3,10 +3,10 @@
 A NodeJS web app for tracking trade orders and duplicate them on a predetermined exchange.
 The app is developped using Express framework with NodeJS and the Pug templating engine as
 views renderer.
-The app uses Exchanges API keys for tracking and duplicating orders. These are stored locally
+The app uses Exchanges API keys[^1] for tracking and duplicating orders. These are stored locally
 in an SQLite3 DB.
-Take care to the keys when dumping/restoring databases. Keys exposed here are not real keys
-but take care to yours.
+
+[^1]: Take care to the keys when dumping/restoring databases. Keys exposed here are not real keys but take care to yours.
 
 ## Clone repository
 
