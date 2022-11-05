@@ -47,7 +47,6 @@ MINGW64 $ npm run dumpdb
 When launched the database is dumped in a 'keystoredb.sql' file. This file contains schema
 creation statements and records insertion for creating the exact same database.
 
-<details>
 ```bash
 MINGW64 $ npm run dumpdb
 
@@ -83,7 +82,6 @@ COMMIT;
 
 MINGW64 $ 
 ```
-</details>
 
 ### Restoring database
 
