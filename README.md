@@ -92,7 +92,23 @@ MINGW64 $
 When database dump is available, it can be restored through the '--restore-db' option of the keystoredb
 script. Invocation is:
 ```bash
-MINGW64 $ npm start
+MINGW64 $ npm run restoredb
+```
+When launched the sqlite3 database file is deleted and restored from the keystoredb.sql file created with a previous dumpdb command.
+Here is an invocation example:
+```bash
+MINGW64 $ npm run restoredb
+
+> myapp@0.0.1 restoredb
+> node ./bin/keystoredb -- --restore-db
+
+initdb: argc = 4 ...
+initdb: argv[3] = --restore-db ...
+Deleting DB file C:\Users\a047461\AppData\Local\myapp\keystore.db ...
+Delete DB file: no such file or directory: done!
+stdout:
+
+MINGW64 $ 
 ```
 
 ## Start WEB App server
