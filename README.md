@@ -91,11 +91,14 @@ MINGW64 $
 
 When database dump is available, it can be restored through the '--restore-db' option of the keystoredb
 script. Invocation is:
+
 ```bash
 MINGW64 $ npm run restoredb
 ```
+
 When launched the sqlite3 database file is deleted and restored from the keystoredb.sql file created with a previous dumpdb command.
 Here is an invocation example:
+
 ```bash
 MINGW64 $ npm run restoredb
 
@@ -114,16 +117,41 @@ MINGW64 $
 ## Start WEB App server
 
 The WEB App server is started through the following command:
+
 ```bash
 MINGW64 $ npm start
 ```
+
 The server is using https with a localhost server self-signed certificate. The server is started through
 the node script 'www' in the bin directory. The NodeJS invocation is as:
+
 ```bash
 MINGW64 $ node ./bin/www
 ```
+
 This script setup the server object with all its attributes (ports, hostname, etc...). When launched, an
 interface is available on 'https://localhost/' for providing API keys and, when done, starting the order
 duplication robot.
+
+When launched, you see something as:
+
+```bash
+MINGW64 $ npm start
+
+> myapp@0.0.1 start
+> node ./bin/www
+
+*** Waiting for APP & DB init ...
+==> Web Server available on https://localhost/
+****** Keystore DB openned !
+****** Adding body parser middleware ...
+****** Body parser middleware RDY!
+****** Adding root index page handler ...
+****** Adding set_api_keys page handler ...
+****** Adding post_api_keys page handler ...
+****** Adding delete_from_db page handler ...
+****** APP router & handlers initialized!
+```
+
 The WEB App provides a 'RUN' button available once all keys are available. This will install orders listeners
 and will duplicate them with a defined ratio.
