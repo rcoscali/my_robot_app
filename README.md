@@ -130,7 +130,7 @@ MINGW64 $ node ./bin/www
 ```
 
 This script setup the server object with all its attributes (ports, hostname, etc...). When launched, an
-interface is available on 'https://localhost/' for providing API keys and, when done, starting the order
+interface is available on [https://localhost/](https://localhost/) for providing API keys and, when done, starting the order
 duplication robot.
 
 When launched, you see something as:
