@@ -45,10 +45,10 @@ const keystoredb =
 								  }
 								  else {
 								      rows.forEach((row) => {								      
-									  app.locals.ftxExchangeId = row.Id;
-									  app.locals.ftxSubAccount = row.Subaccount;
-									  console.log('****** /: Got "ftx" exchange record with Id "'+app.locals.ftxExchangeId+'" and Subaccount "'+app.locals.ftxSubAccount+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+app.locals.ftxExchangeId+";",
+									  ftxExchangeId = row.Id;
+									  ftxSubAccount = row.Subaccount;
+									  console.log('****** /: Got "ftx" exchange record with Id "'+ftxExchangeId+'" and Subaccount "'+ftxSubAccount+'"');
+									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+ftxExchangeId+";",
 											     [],
 											     (err, rows) => {
 												 if (err) {
@@ -56,9 +56,9 @@ const keystoredb =
 												 }
 												 else {
 												     rows.forEach((row) => {
-													 app.locals.ftxKey = row.Key;
-													 app.locals.ftxSecret = row.Secret;
-													 console.log('****** /: Get "ftx" exchange key: Key="'+app.locals.ftxKey+'"  Key_Secret="'+app.locals.ftxSecret+'"');
+													 ftxKey = row.Key;
+													 ftxSecret = row.Secret;
+													 console.log('****** /: Get "ftx" exchange key: Key="'+ftxKey+'"  Key_Secret="'+ftxSecret+'"');
 												 });
 											     }
 											 }
@@ -76,9 +76,9 @@ const keystoredb =
 								  }
 								  else {
 								      rows.forEach((row) => {
-									  app.locals.binanceExchangeId = row.Id;
-									  console.log('****** /: Got "binance" exchange record with Id "'+app.locals.binanceExchangeId+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+app.locals.binanceExchangeId+";",
+									  binanceExchangeId = row.Id;
+									  console.log('****** /: Got "binance" exchange record with Id "'+binanceExchangeId+'"');
+									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+binanceExchangeId+";",
 											     [],
 											     (err, rows) => {
 												 if (err) {
@@ -86,9 +86,9 @@ const keystoredb =
 												 }
 												 else {
 												     rows.forEach((row) => {
-													 app.locals.binanceKey = row.Key;
-													 app.locals.binanceSecret = row.Secret;
-													 console.log('****** /: Get "binance" exchange key: Key="'+app.locals.binanceKey+'"  Key_Secret="'+app.locals.binanceSecret+'"');
+													 binanceKey = row.Key;
+													 binanceSecret = row.Secret;
+													 console.log('****** /: Get "binance" exchange key: Key="'+binanceKey+'"  Key_Secret="'+binanceSecret+'"');
 												     });
 												 }
 											     }
@@ -105,9 +105,9 @@ const keystoredb =
 								  }
 								  else {
 								      rows.forEach((row) => {
-									  app.locals.krakenExchangeId = row.Id;
-									  console.log('****** /: Got "kraken" exchange record with Id "'+app.locals.krakenExchangeId+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+app.locals.krakenExchangeId+";",
+									  krakenExchangeId = row.Id;
+									  console.log('****** /: Got "kraken" exchange record with Id "'+krakenExchangeId+'"');
+									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+krakenExchangeId+";",
 											     [],
 											     (err, rows) => {
 												 if (err) {
@@ -115,17 +115,17 @@ const keystoredb =
 												 }
 												 else {
 												     rows.forEach((row) => {
-													 app.locals.krakenKey = row.Key;
-													 app.locals.krakenSecret = row.Secret;
-													 console.log('****** /: Get "kraken" exchange key: Key="'+app.locals.krakenKey+'"  Key_Secret="'+app.locals.krakenSecret+'"');
+													 krakenKey = row.Key;
+													 krakenSecret = row.Secret;
+													 console.log('****** /: Get "kraken" exchange key: Key="'+krakenKey+'"  Key_Secret="'+krakenSecret+'"');
 												     });
 												 }
 												 res.render('index',
 													    {
 														title: 'Express', content: 'Content',
-														ftxKey: app.locals.ftxKey, ftxSecret: app.locals.ftxSecret, ftxSubAccount: app.locals.ftxSubAccount,
-														binanceKey: app.locals.binanceKey, binanceSecret: app.locals.binanceSecret,
-														krakenKey: app.locals.krakenKey, krakenSecret: app.locals.krakenSecret
+														ftxKey: ftxKey, ftxSecret: ftxSecret, ftxSubAccount: ftxSubAccount,
+														binanceKey: binanceKey, binanceSecret: binanceSecret,
+														krakenKey: krakenKey, krakenSecret: krakenSecret
 													    }
 													   );
 											     }
@@ -140,7 +140,9 @@ const keystoredb =
 				   /* GET set_api_keys page. */
 				   console.log('****** Adding set_api_keys page handler ...');
 				   router.get('/set_api_keys', function(req, res, next) {
-				       var exchange = req.body.exchange;
+				       var key_secret = req.body.key_secret;
+				       var exchange = req.query.exchange;
+				       var subaccount = req.body.subaccount;
 				       console.log("*** /set_api_keys: exchange = '"+exchange+"'");
 				       res.render('set_api_keys', { 'title': 'SET API Keys', 'exchange': exchange });
 				   });
