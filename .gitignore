@@ -7,6 +7,10 @@ CVS/
 .svn/
 .hg/
 
+# Project files
+.project
+
+
 # Backup files
 *~
 *.bak
