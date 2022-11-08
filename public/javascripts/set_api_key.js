@@ -3,6 +3,8 @@ function getExchange()
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     var exchange = urlParams.get('exchange');
+    if (exchange == undefined)
+	exchange = document.getElementById('exchange').value;
     return exchange;
 }
 
