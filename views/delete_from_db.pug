@@ -1,14 +1,12 @@
-extends layout
+extends setkeys_layout
 
 block content
   h1= title
   p Welcome to #{title}
-  p(id="exchangepara") Delete API keys for exchange
+  p(id="exchangepara") Deleted API keys for exchange
 
-  input(id="exchange", type="text", name="exchange", value="", hidden="true")
-  input(type="submit", value="Submit", onClick="document.getElementById['exchange'].value=getExchange();")
-  input(type="button", value="Cancel", onClick="window.location='https://localhost'")
-  input(type="button", value="Delete from DB", onClick="url='https://localhost/delete_from_db?exchange='+getExchange()+'&key='+getKey(); window.location=url")
+  input(type="button", value="Back", onClick="document.location.href='https://localhost'")
+
   script(type="text/javascript", src="/javascripts/set_exchange_name.js")
   script(type="text/javascript", src="/javascripts/disable_subaccount.js")
   script(type="text/javascript", src="/javascripts/set_param_values.js")

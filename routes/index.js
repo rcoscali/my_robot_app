@@ -120,6 +120,14 @@ const keystoredb =
 													 console.log('****** /: Get "kraken" exchange key: Key="'+app.locals.krakenKey+'"  Key_Secret="'+app.locals.krakenSecret+'"');
 												     });
 												 }
+												 res.render('index',
+													    {
+														title: 'Express', content: 'Content',
+														ftxKey: app.locals.ftxKey, ftxSecret: app.locals.ftxSecret, ftxSubAccount: app.locals.ftxSubAccount,
+														binanceKey: app.locals.binanceKey, binanceSecret: app.locals.binanceSecret,
+														krakenKey: app.locals.krakenKey, krakenSecret: app.locals.krakenSecret
+													    }
+													   );
 											     }
 											    );
 								      });
@@ -127,14 +135,6 @@ const keystoredb =
 							      }
 							     );
 				       });
-				       res.render('index',
-						  {
-						      title: 'Express', content: 'Content',
-						      ftxKey: app.locals.ftxKey, ftxSecret: app.locals.ftxSecret, ftxSubAccount: app.locals.ftxSubAccount,
-						      binanceKey: app.locals.binanceKey, binanceSecret: app.locals.binanceSecret,
-						      krakenKey: app.locals.krakenKey, krakenSecret: app.locals.krakenSecret
-						  }
-						 );
 				   });
 				   
 				   /* GET set_api_keys page. */
@@ -193,28 +193,18 @@ const keystoredb =
 				   /* GET delete_from_db page */
 				   console.log('****** Adding delete_from_db page handler ...');
 				   router.get('/delete_from_db', function(req, res, next) {
-				       var key = req.body.key;
-				       var exchange = req.body.exchange;
-				       var subaccount = req.body.subaccount;
-				       console.log("*** /delete_from_db: Key = '"+key+"', exchange = '"+exchange+"', subaccount = '"+subaccount+"'");
+				       var key = req.query.key;
+				       var exchange = req.query.exchange;
+				       console.log("*** /delete_from_db: Key = '"+key+"', exchange = '"+exchange+"'");
 				       var exchangeId;
-				       app.keystoredb.serialize(() => {
-					   app.keystoredb.all("SELECT Id FROM Exchanges WHERE Name LIKE '"+exchange+"';",
-							      [], 
-							      (err, rows) => {
-								  if (err) {
-								      console.log('****** Get exchange record: err = "'+err.message+'"');
-								  }
-								  else {
-								      rows.forEach((row) => {
-									  console.log('****** /delete_from_db: Got ftx exchange record with id "'+row.Id+'"');
-									  exchangeId = row.Id;
-								  });
-							      }
-							      });
-					   app.keystoredb.run("DELETE FROM Keys WHERE ExchangeId=="+exchangeId+" AND Key=="+key);
-					   next();
-				       });
+				       app.keystoredb.run("DELETE FROM Keys WHERE Key='"+key+"' AND ExchangeId=(SELECT Id FROM Exchanges WHERE Name='"+exchange+"')")
+				       res.render('delete_from_db',
+						  {
+						      'title': 'DELETE API Keys from DB for exchange '+exchange,
+						      'key': key,
+						      'exchange': exchange,
+						  }
+						 );
 				   });
 				   
 				   // Let's serialize Keystore DB inits
