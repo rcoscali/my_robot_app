@@ -23,7 +23,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.use(function (req, res, next) {
-    console.log('Time: %d', Date.now());
+    console.log('Time: %d: %s://%s%s', Date.now(), req.protocol, req.hostname, req.path);
     next();
 });
 
