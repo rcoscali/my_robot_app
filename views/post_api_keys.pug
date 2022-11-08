@@ -3,7 +3,6 @@ extends setkeys_layout
 block content
   h1= title
   p Welcome to #{title}
-  p(id="exchangepara") Set API keys for exchange
   
   p
     table
@@ -27,6 +26,7 @@ block content
             | #{subaccount}
   input(id="exchange", type="text", name="exchange", value="", hidden="true")
   input(type="button", value="Home", onClick="window.location='https://localhost/'")
+  script(type="text/javascript") document.getElementById('exchange').value = #{exchange}; 
   script(type="text/javascript", src="/javascripts/set_exchange_name.js")
   script(type="text/javascript", src="/javascripts/disable_subaccount.js")
   script(type="text/javascript", src="/javascripts/set_param_values.js")
