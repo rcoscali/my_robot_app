@@ -1,3 +1,6 @@
-var exchange = getExchange();
-document.getElementById('exchangepara').innerHTML += "&nbsp;'"+exchange+"'";
-document.getElementById('exchange').value = exchange;
+function updateExchangeName(exchange)
+{
+    document.getElementById('exchangepara').innerHTML += "&nbsp;'"+exchange+"'";
+    document.getElementById('exchange').value = exchange;
+}
+
