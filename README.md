@@ -28,12 +28,12 @@ Please refers to the following documentations for context of this webapp dev:
 
 The keystore.ddl file contains the SQL statements for creating tables and populating records
 used.
-In order to init database a script named 'keystoredb' is defined in the bin directory. It is
+In order to init database a script named `keystoredb` is defined in the bin directory. It is
 used through the package.json scripts. Just issue the following command
 ```bash
 MINGW64 $ npm run initdb
 ```
-By looking in the 'package.json' file you can see the keystoredb script is launched through
+By looking in the `package.json` file you can see the keystoredb script is launched through
 a NodeJS invocation:
 ```bash
 MINGW64 $ node ./bin/keystoredb -- --init-db
@@ -44,11 +44,11 @@ Other option arguments are available for dumping and restoring database.
 
 ### Dumping database
 
-Database dumping is available through the 'keystoredb' script invocation with:
+Database dumping is available through the `keystoredb` script invocation with:
 ```bash
 MINGW64 $ npm run dumpdb
 ```
-When launched the database is dumped in a 'keystoredb.sql' file. This file contains schema
+When launched the database is dumped in a `keystoredb.sql` file. This file contains schema
 creation statements and records insertion for creating the exact same database.
 
 ```bash
@@ -89,7 +89,7 @@ MINGW64 $
 
 ### Restoring database
 
-When database dump is available, it can be restored through the '--restore-db' option of the keystoredb
+When database dump is available, it can be restored through the `--restore-db` option of the keystoredb
 script. Invocation is:
 
 ```bash
@@ -123,7 +123,7 @@ MINGW64 $ npm start
 ```
 
 The server is using https with a localhost server self-signed certificate. The server is started through
-the node script 'www' in the bin directory. The NodeJS invocation is as:
+the node script `www` in the bin directory. The NodeJS invocation is as:
 
 ```bash
 MINGW64 $ node ./bin/www
@@ -153,7 +153,7 @@ MINGW64 $ npm start
 ****** APP router & handlers initialized!
 ```
 
-The WEB App provides a 'RUN' button available once all keys are available. This will install orders listeners
+The WEB App provides a `RUN` button available once all keys are available. This will install orders listeners
 and will duplicate them with a defined ratio.
 
 ## Debug NodeJS WEB App server with Chrome/Edge
@@ -168,7 +168,7 @@ First step is starting the WEB App server with NodeJS exposing the inspector API
 MINGW64 $ npm run debug
 ```
 
-This will actually launch the start webapp command with passing the '--inspect' option to NodeJS.
+This will actually launch the start webapp command with passing the `--inspect` option to NodeJS.
 
 ```bash
 MINGW64 $ node --inspect ./bin/www
@@ -196,15 +196,15 @@ For help, see: https://nodejs.org/en/docs/inspector
 ****** APP router & handlers initialized!
 ```
 
-Note the two first lines that were added about debugger listener. Let's now use the 'ws://127.0.0.1:9229/218a9ab1-4b22-4a69-b220-970317e82223' URL provided by the listener and connect it our debugger. Don't be afraid you do not need to remember this UUID based URL. It will be discovered at the next step ;-).
+Note the two first lines that were added about debugger listener. Let's now use the `ws://127.0.0.1:9229/218a9ab1-4b22-4a69-b220-970317e82223` URL provided by the listener and connect it our debugger. Don't be afraid you do not need to remember this UUID based URL. It will be discovered at the next step ;-).
 
 ### Connect the Chrome/Edge inspector
 
-Second step is to connect the inspector tool (a.k.a. Developper Tools) provided by either Chrome or Edge (or even Chromium). This can be achieved by opening the browser you want to use and entering the 'chrome://inspect' or 'edge://inspect' URL. When done here is the window you will first get:
+Second step is to connect the inspector tool (a.k.a. Developper Tools) provided by either Chrome or Edge (or even Chromium). This can be achieved by opening the browser you want to use and entering the `chrome://inspect` or `edge://inspect` URL. When done here is the window you will first get:
 
 ![Inspect with Chrome Developper Tools inital window](images/chrome_inspect_start.png)
 
-Now just activate the 'Discover network targets' this way, and wait for a few seconds ...
+Now just activate the `Discover network targets` this way, and wait for a few seconds ...
 
 ![Inspect with Chrome Developper Tools discovery active](images/chrome_inspect0.png)
 
@@ -212,18 +212,18 @@ but as you I used a standard host/port params to NodeJS debugger listener, the c
 
 ![Inspect with Chrome Developper Tools discovered our app](images/chrome_inspect.png)
 
-Once you get the './bin/www' line with the 'inspect' link, click this link as for an 'inspect web page' usage. This action will open a new 'inspector window', as shown in the following screen shot:
+Once you get the `./bin/www` line with the `inspect` link, click this link as for an `inspect web page` usage. This action will open a new `inspector window`, as shown in the following screen shot:
 
 ![Inspector Window with Chrome Developper Tools](images/chrome_inspect_opened.png)
 
-You can see, at the bottom of the window, the console of our NodeJS WEB App server. We are now opening our project ... Switch to the 'Sources' tab at the top of the window, as shown in the following picture
+You can see, at the bottom of the window, the console of our NodeJS WEB App server. We are now opening our project ... Switch to the `Sources` tab at the top of the window, as shown in the following picture
 
 ![Inspector Window with Chrome Developper Tools w/ workspace](images/chrome_inspect_open_source.png)
 
-and click the 'Ajouter un dossier à l'espace de travail ...'. Select the myapp sources directory in the opened directory selector, and click 'Selectionner un dossier'. Once done, you'll get this window:
+and click the `Ajouter un dossier à l'espace de travail ...`. Select the myapp sources directory in the opened directory selector, and click `Selectionner un dossier`. Once done, you'll get this window:
 
 ![Inspector Window with Chrome Developper Tools w/ workspace](images/chrome_inspect_open_workspace.png)
 
 You are then ready to debug ...
 
-Note: The first time you open the myapp workspace you could have to give inspector access to the myapp directory by clicking an 'authorize' button appearing at the top of the window! 
+Note: The first time you open the `myapp` workspace you could have to give inspector access to the `myapp` directory by clicking an `authorize` button appearing at the top of the window! 
