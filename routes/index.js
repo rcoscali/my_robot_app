@@ -138,7 +138,7 @@ const keystoredb =
 									   }
 									   app.keystoredb.all(
 									       "SELECT Id, Name FROM Exchanges WHERE DirectionIn=FALSE;",
-									       []
+									       [],
 									       (err, rows) =>
 									       {
 										   if (err) {
