@@ -36,105 +36,143 @@ const keystoredb =
 				       var binanceExchangeId, binanceKey, binanceSecret;
 				       var krakenExchangeId, krakenKey, krakenSecret;
 
-				       app.keystoredb.serialize(() => {
-					   app.keystoredb.all("SELECT Id, Subaccount FROM Exchanges WHERE Name LIKE 'ftx';",
-							      [], 
-							      (err, rows) => {
-								  if (err) {
-								      console.log('****** /: Get "ftx" exchange record: err = "'+err.message+'"');
-								  }
-								  else {
-								      rows.forEach((row) => {								      
-									  ftxExchangeId = row.Id;
-									  ftxSubAccount = row.Subaccount;
-									  console.log('****** /: Got "ftx" exchange record with Id "'+ftxExchangeId+'" and Subaccount "'+ftxSubAccount+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+ftxExchangeId+";",
-											     [],
-											     (err, rows) => {
-												 if (err) {
-												     console.log('****** /: Get "ftx" exchange key: err = "'+err.message+'"');
-												 }
-												 else {
-												     rows.forEach((row) => {
-													 ftxKey = row.Key;
-													 ftxSecret = row.Secret;
-													 console.log('****** /: Get "ftx" exchange key: Key="'+ftxKey+'"  Key_Secret="'+ftxSecret+'"');
-												 });
-											     }
-											 }
-											);
-								  });
-							      }
-							  }
-							     );
-													 
-					   app.keystoredb.all("SELECT Id FROM Exchanges WHERE Name LIKE 'binance';",
-							      [], 
-							      (err, rows) => {
-								  if (err) {
-								      console.log('****** /: Get "binance" exchange record: err = "'+err.message+'"');
-								  }
-								  else {
-								      rows.forEach((row) => {
-									  binanceExchangeId = row.Id;
-									  console.log('****** /: Got "binance" exchange record with Id "'+binanceExchangeId+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+binanceExchangeId+";",
-											     [],
-											     (err, rows) => {
-												 if (err) {
-												     console.log('****** /: Get "binance" exchange key: err = "'+err.message+'"');
-												 }
-												 else {
-												     rows.forEach((row) => {
-													 binanceKey = row.Key;
-													 binanceSecret = row.Secret;
-													 console.log('****** /: Get "binance" exchange key: Key="'+binanceKey+'"  Key_Secret="'+binanceSecret+'"');
-												     });
-												 }
-											     }
-											    );
-								      });
-								  }
-							      }
-							     );
-					   app.keystoredb.all("SELECT Id FROM Exchanges WHERE Name LIKE 'kraken';",
-							      [], 
-							      (err, rows) => {
-								  if (err) {
-								      console.log('****** /: Get "kraken" exchange record: err = "'+err.message+'"');
-								  }
-								  else {
-								      rows.forEach((row) => {
-									  krakenExchangeId = row.Id;
-									  console.log('****** /: Got "kraken" exchange record with Id "'+krakenExchangeId+'"');
-									  app.keystoredb.all("SELECT Key, Secret FROM Keys WHERE ExchangeId = "+krakenExchangeId+";",
-											     [],
-											     (err, rows) => {
-												 if (err) {
-												     console.log('****** /: Get "kraken" exchange key: err = "'+err.message+'"');
-												 }
-												 else {
-												     rows.forEach((row) => {
-													 krakenKey = row.Key;
-													 krakenSecret = row.Secret;
-													 console.log('****** /: Get "kraken" exchange key: Key="'+krakenKey+'"  Key_Secret="'+krakenSecret+'"');
-												     });
-												 }
-												 res.render('index',
-													    {
-														title: 'Express', content: 'Content',
-														ftxKey: ftxKey, ftxSecret: ftxSecret, ftxSubAccount: ftxSubAccount,
-														binanceKey: binanceKey, binanceSecret: binanceSecret,
-														krakenKey: krakenKey, krakenSecret: krakenSecret
-													    }
-													   );
-											     }
-											    );
-								      });
-								  }
-							      }
-							     );
-				       });
+				       app.keystoredb.serialize(
+					   () => {
+					       app.keystoredb.all(
+						   "SELECT Id, Subaccount FROM Exchanges WHERE Name LIKE 'ftx' AND DirectionIn=TRUE;",
+						   [], 
+						   (err, rows) => {
+						       if (err) {
+							   console.log('****** /: Get "ftx" exchange record: err = "'+err.message+'"');
+						       }
+						       else {
+							   rows.forEach((row) => {								      
+							       ftxExchangeId = row.Id;
+							       ftxSubAccount = row.Subaccount;
+							       console.log('****** /: Got "ftx" exchange record with Id "'+ftxExchangeId+'" and Subaccount "'+ftxSubAccount+'"');
+							       app.keystoredb.all(
+								   "SELECT Key, Secret FROM Keys WHERE ExchangeId = "+ftxExchangeId+";",
+								   [],
+								   (err, rows) => {
+								       if (err) {
+									   console.log('****** /: Get "ftx" exchange key: err = "'+err.message+'"');
+								       }
+								       else {
+									   rows.forEach((row) =>
+									       {
+										   ftxKey = row.Key;
+										   ftxSecret = row.Secret;
+										   console.log('****** /: Get "ftx" exchange key: Key="'+ftxKey+'"  Key_Secret="'+ftxSecret+'"');
+									       });
+								       }
+								   }
+							       );
+							   });
+						       }
+						   }
+					       );
+					       
+					       app.keystoredb.all(
+						   "SELECT Id FROM Exchanges WHERE Name LIKE 'binance' AND DirectionIn=TRUE;",
+						   [], 
+						   (err, rows) =>
+						   {
+						       if (err) {
+							   console.log('****** /: Get "binance" exchange record: err = "'+err.message+'"');
+						       }
+						       else {
+							   rows.forEach((row) => {
+							       binanceExchangeId = row.Id;
+							       console.log('****** /: Got "binance" exchange record with Id "'+binanceExchangeId+'"');
+							       app.keystoredb.all(
+								   "SELECT Key, Secret FROM Keys WHERE ExchangeId = "+binanceExchangeId+";",
+								   [],
+								   (err, rows) =>
+								   {
+								       if (err) {
+									   console.log('****** /: Get "binance" exchange key: err = "'+err.message+'"');
+								       }
+								       else {
+									   rows.forEach((row) => {
+									       binanceKey = row.Key;
+									       binanceSecret = row.Secret;
+									       console.log('****** /: Get "binance" exchange key: Key="'+binanceKey+'"  Key_Secret="'+binanceSecret+'"');
+									   });
+								       }
+								   }
+							       );
+							   });
+						       }
+						   }
+					       );
+					       app.keystoredb.all(
+						   "SELECT Id FROM Exchanges WHERE Name LIKE 'kraken' AND DirectionIn=TRUE;",
+						   [], 
+						   (err, rows) =>
+						   {
+						       if (err)
+							   console.log('****** /: Get "kraken" exchange record: err = "'+err.message+'"');
+
+						       else
+						       {
+							   rows.forEach((row) =>
+							       {
+								   krakenExchangeId = row.Id;
+								   console.log('****** /: Got "kraken" exchange record with Id "'+krakenExchangeId+'"');
+								   app.keystoredb.all(
+								       "SELECT Key, Secret FROM Keys WHERE ExchangeId = "+krakenExchangeId+";",
+								       [],
+								       (err, rows) =>
+								       {
+									   if (err) {
+									       console.log('****** /: Get "kraken" exchange key: err = "'+err.message+'"');
+									   }
+									   else
+									   {
+									       rows.forEach((row) =>
+										   {
+										       krakenKey = row.Key;
+										       krakenSecret = row.Secret;
+										       console.log('****** /: Get "kraken" exchange key: Key="'+krakenKey+'"  Key_Secret="'+krakenSecret+'"');
+										   });
+									   }
+									   app.keystoredb.all(
+									       "SELECT Id, Name FROM Exchanges WHERE DirectionIn=FALSE;",
+									       []
+									       (err, rows) =>
+									       {
+										   if (err) {
+										       console.log('****** /: Get output exchange key: err = "'+err.message+'"');
+										   }
+										   else
+										   {
+										       rows.forEach((row) =>
+											   {
+											       outExchange = row.Name;
+											       outKey = row.Key;
+											       outKeySecret = row.Secret;
+											       console.log('****** /: Get output exchange '+outExchange+' key: Key="'+outKey+'"  Key_Secret="'+outKeySecret+'"');
+											   });	
+										   }
+									       }
+									       res.render(
+										   'index',
+										   {
+										       title: 'Express', content: 'Content',
+										       ftxKey: ftxKey, ftxSecret: ftxSecret, ftxSubAccount: ftxSubAccount,
+										       binanceKey: binanceKey, binanceSecret: binanceSecret,
+										       krakenKey: krakenKey, krakenSecret: krakenSecret,
+										       outExchange: outExchange, outKey: outKey, outKeySecret: outKeySecret
+										   }
+									       );
+									   );
+								       }
+								   );
+							       });
+						       }
+						   }
+					       );
+					   });
 				   });
 				   
 				   /* GET set_api_keys page. */
@@ -156,7 +194,7 @@ const keystoredb =
 				       var subaccount = req.body.subaccount;
 				       console.log("*** /post_api_keys: Key = '"+key+"', key secret is '"+key_secret+"', exchange = '"+exchange+"', subaccount = '"+subaccount+"'");
 				       app.keystoredb.serialize(() => {
-					   app.keystoredb.all("SELECT Key, Secret, ExchangeId FROM Keys JOIN Exchanges ON Name LIKE ? WHERE Key == ?;",
+					   app.keystoredb.all("SELECT Key, Secret, ExchangeId FROM Keys JOIN Exchanges ON Name LIKE ? AND DirectionIn=TRUE WHERE Key == ?;",
 							      [exchange, key], 
 							      (err, rows) => {
 								  console.log('****** Get key record: nb of rows = "'+rows.length+'"');
@@ -199,7 +237,7 @@ const keystoredb =
 				       var exchange = req.query.exchange;
 				       console.log("*** /delete_from_db: Key = '"+key+"', exchange = '"+exchange+"'");
 				       var exchangeId;
-				       app.keystoredb.run("DELETE FROM Keys WHERE Key='"+key+"' AND ExchangeId=(SELECT Id FROM Exchanges WHERE Name='"+exchange+"')")
+				       app.keystoredb.run("DELETE FROM Keys WHERE Key='"+key+"' AND ExchangeId=(SELECT Id FROM Exchanges WHERE Name='"+exchange+"' AND DirectionIn=TRUE)")
 				       res.render('delete_from_db',
 						  {
 						      'title': 'DELETE API Keys from DB for exchange '+exchange,

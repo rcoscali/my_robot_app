@@ -13,8 +13,17 @@ block content
   script(type="text/javascript") var ftxKey="#{ftxKey}";
   script(type="text/javascript") var ftxSecret='#{ftxSecret}';
   script(type="text/javascript") var ftxSubAccount="#{ftxSubAccount}";
+  script(type="text/javascript") var outExchange="#{outExchange}";
+  script(type="text/javascript") var outKey="#{outKey}";
+  script(type="text/javascript") var outKeySecret="#{outKeySecret}";
+  script(type="text/javascript") var outExchangeSubAccount="#{outExchangeSubAccount}";
+  
   form(method="get", enctype="application/x-www-form-urlencoded", action="/run")
     table
+      tr
+        td(colspan="2", bgcolor="#AAAAAA")
+          p
+            | <em>Input API keys (Keys for exchange platform we listen to orders)</em>
       tr
         td
           p
@@ -52,6 +61,32 @@ block content
           input(type="text", readonly, id="kraken_key", name="kraken_key", placeholder="Kraken Key to set ...", value="")
           br
           input(type="password", readonly, id="kraken_key_secret", name="kraken_key_secret", placeholder="Kraken Key Secret to set ...", value="")
-  input(type="button", id="run_button", value="Run", onClick="", hidden)
+      tr
+        td(colspan="2")
+          hr
+      tr
+        td(colspan="2", bgcolor="#AAAAAA")
+          p
+            | <em>Output API keys (Keys for exchange platform we emit scaled orders)</em>
+      tr
+        td
+          p(center)
+            | Output &nbsp;
+            select(name="out_exchange", id="out_exchange")
+              option(name="ftx", id="ftx", value="ftx", selected)
+                | ftx
+              option(name="binance", id="binance", value="binance")
+                | binance
+              option(name="kraken", id="kraken", value="kraken")
+                | kraken
+            br
+            a(href="#", onClick="url='/set_out_api_keys?exchange='+document.getElementById('outexchange').selected+'&Key='+document.getElementById('outkey').value+'&Secret='+document.getElementById('outkey_secret').value; window.location=url; ")
+              | set out exchange API keys
+        td
+          input(type="text", readonly, id="outkey", name="outkey", placeholder="Output Key to set ...", value="")
+          br
+          input(type="password", readonly, id="outkey_secret", name="outkey_secret", placeholder="Output Key Secret to set ...", value="")
+	  br
+          input(type="text", readonly, id="out_exchange_subaccount", name="out_exchange_subaccount", placeholder="Output exchange sub account to use ...", value="")
+  input(type="button", id="run_button", value="Run", onClick="document.location.href='/run'", hidden)
   script(type="text/javascript", src="/javascripts/set_keys.js")
-  
