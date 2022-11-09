@@ -154,7 +154,7 @@ const keystoredb =
 											       console.log('****** /: Get output exchange '+outExchange+' key: Key="'+outKey+'"  Key_Secret="'+outKeySecret+'"');
 											   });	
 										   }
-									       }
+									       });
 									       res.render(
 										   'index',
 										   {
