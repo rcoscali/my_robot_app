@@ -6,3 +6,96 @@ body {
 a {
   color: #00B7FF;
 }
+
+.key-input {
+    font-family: monospace;
+}
+
+table {
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+}
+
+.inner-table {
+    border: 0px;
+    border-radius: 10px;
+}
+
+tr {
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.tr-th {
+    border: 2px solid white;
+    border-radius: 0px;
+}
+
+.out-key-tr {
+    border: 1px solid #662222;
+    border-radius: 15px;
+    color: #AA2222;
+}
+
+.out-key-no-tr {
+    border: 0px;
+    padding: 10px
+    border-radius: 15px;
+}
+
+.in-key-tr {
+    border: 1px solid #226622;
+    border-radius: 15px;
+    color: #22AA22;
+}
+
+.in-key-no-tr {
+    border: 0px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+td {
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.td-th {
+    border: 1px solid white;
+    border-radius: 0px;
+}
+
+.out-key-td {
+    border: 1px solid #882222;
+    border-radius: 15px;
+}
+
+.inner-out-key-td {
+    border: 5px solid #FFBBBB;
+    border-radius: 0px;
+}
+
+.out-key-no-td {
+    border: 1px solid #FFBBBB;
+    border-radius: 15px;
+    padding: 2px;
+}
+
+.in-key-td {
+    border: 1px solid #228822;
+    border-radius: 15px;
+}
+
+.inner-in-key-td {
+    border: 5px solid #BBFFBB;
+    border-radius: 0px;
+}
+
+.in-key-no-td {
+    border: 1px solid #BBFFBB;
+    border-radius: 15px;
+    padding: 2px;
+}
+

@@ -1,0 +1,12 @@
+extends setoutkeys_layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p(id="exchangepara") Deleted API keys for out exchange
+
+  input(type="button", value="Back", onClick="document.location.href='https://localhost'")
+
+  script(type="text/javascript", src="/javascripts/set_exchange_name.js")
+  script(type="text/javascript", src="/javascripts/disable_subaccount.js")
+  script(type="text/javascript", src="/javascripts/set_param_values.js")

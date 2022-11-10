@@ -23,85 +23,85 @@ block content
   script(type="text/javascript") var outExchangeSubAccount="#{outExchangeSubAccount}";
 
   form(method="get", enctype="application/x-www-form-urlencoded", action="/run")
-    table(width="100%")
-      tr
-        td(colspan="2", bgcolor="#AAAAAA")
+    table
+      tr(class="tr-th")
+        td(colspan="2", bgcolor="#AAAAAA", class="td-th")
           p
             center
               em
                 font(color="#FFFFFF")
-                  | Input API keys (Keys for exchange platform we listen to orders)
-      tr(bgcolor="#DDFFDD")
+                  | Input API keys (Keys for exchange platform for orders we listen to)
+      tr(bgcolor="#DDFFDD", class="in-key-tr")
         td
           p
             center
               a(href="#", onClick="url='/set_api_keys?exchange=binance&Key='+document.getElementById('binance_key').value+'&Secret='+document.getElementById('binance_key_secret').value; window.location=url; ")
                 strong
-                  | ==&gt; set &lt;==
+                  | (==&gt; set &lt;==)
 
-        td
-          table(width="700pt", bgcolor="#DDFFDD", border="0")
-            tr
-              td(bgcolor="#AAFFAA")
+        td(class="inner-in-key-td")
+          table(width="700pt", class="inner-table")
+            tr(class="inner-in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | Binance key name:
-              td(width="300pt", align="right")
-                input(type="text", size="50", readonly, id="binance_key", name="binance_key", placeholder="Binance Key to set ...", autocomplete="API key name", value="")
-            tr
-              td(bgcolor="#AAFFAA")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="binance_key", name="binance_key", placeholder="Binance Key to set ...", autocomplete="API key name", value="")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | Binance key secret:
-              td(width="300pt", align="right")
-                input(type="password", size="50", readonly, id="binance_key_secret", name="binance_key_secret", placeholder="Binance Key Secret to set ...", autocomplete="API key secret", value="")
-      tr(bgcolor="#DDFFDD")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="password", class="key-input", size="50", readonly, id="binance_key_secret", name="binance_key_secret", placeholder="Binance Key Secret to set ...", autocomplete="API key secret", value="")
+      tr(bgcolor="#DDFFDD", class="in-key-tr")
         td
           p
             center
               a(href="#", onClick="url='/set_api_keys?exchange=ftx&Key='+document.getElementById('ftx_key').value+'&Secret='+document.getElementById('ftx_key_secret').value+'&SubAccount='+document.getElementById('ftx_subaccount').value; window.location=url; ")
                 strong
-                  | ==&gt; set &lt;==
-        td
-          table(width="700pt", bgcolor="#DDFFDD", border="0")
-            tr
-              td(bgcolor="#AAFFAA")
+                  | (==&gt; set &lt;==)
+        td(class="inner-in-key-td")
+          table(width="700pt", class="inner-table")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | FTX key name:
-              td(width="300pt", align="right")
-                input(type="text", size="50", readonly, id="ftx_key", name="ftx_key", placeholder="FTX Key to set ...", autocomplete="API key name", value="")
-            tr
-              td(bgcolor="#AAFFAA")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="ftx_key", name="ftx_key", placeholder="FTX Key to set ...", autocomplete="API key name", value="")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | FTX key secret:
-              td(width="300pt", align="right")
-                input(type="password", size="50", readonly, id="ftx_key_secret", name="ftx_key_secret", placeholder="FTX Key Secret to set ...", autocomplete="API key secret", value="")
-            tr
-              td(bgcolor="#AAFFAA")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="password", class="key-input", size="50", readonly, id="ftx_key_secret", name="ftx_key_secret", placeholder="FTX Key Secret to set ...", autocomplete="API key secret", value="")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 FTX sub account:
-              td(width="300pt", align="right")
-                input(type="text", size="50", readonly, id="ftx_subaccount", name="ftx_subaccount", placeholder="FTX subaccount to set ...", autocomplete="account name", value="")
-      tr(bgcolor="#DDFFDD")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="ftx_subaccount", name="ftx_subaccount", placeholder="FTX subaccount to set ...", autocomplete="account name", value="")
+      tr(bgcolor="#DDFFDD", class="in-key-tr")
         td
           p
             center
               a(href="#", onClick="url='/set_api_keys?exchange=kraken&Key='+document.getElementById('kraken_key').value+'&Secret='+document.getElementById('kraken_key_secret').value; window.location=url; ")
                 strong
-                  |  ==&gt; set &lt;==
-        td
-          table(width="700pt", bgcolor="#DDFFDD", border="0")
-            tr
-              td(bgcolor="#AAFFAA")
+                  |  (==&gt; set &lt;==)
+        td(class="inner-in-key-td")
+          table(width="700pt", class="inner-table")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | Kraken key name:
-              td(width="300pt", align="right")
-                input(type="text", size="50", readonly, id="kraken_key", name="kraken_key", placeholder="Kraken Key to set ...", autocomplete="API key name", value="")
-            tr
-              td(bgcolor="#AAFFAA")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="kraken_key", name="kraken_key", placeholder="Kraken Key to set ...", autocomplete="API key name", value="")
+            tr(class="in-key-tr")
+              td(bgcolor="#AAFFAA", class="in-key-td")
                 | Kraken key secret:
-              td(width="400pt", align="right")
-                input(type="password", size="50", readonly, id="kraken_key_secret", name="kraken_key_secret", placeholder="Kraken Key Secret to set ...", autocomplete="API key secret", value="")
-      tr
-        td(colspan="2", bgcolor="#AAAAAA")
+              td(width="400pt", align="center", class="in-key-no-td")
+                input(type="password", class="key-input", size="50", readonly, id="kraken_key_secret", name="kraken_key_secret", placeholder="Kraken Key Secret to set ...", autocomplete="API key secret", value="")
+      tr(class="th")
+        td(colspan="2", bgcolor="#AAAAAA", class="td-th")
           p
             center
               em
                 font(color="#FFFFFF")
                   | Output API keys (Keys for exchange platform we emit scaled orders)
-      tr(bgcolor="#FFDDDD")
+      tr(bgcolor="#FFDDDD", class="out-key-tr")
         td
           p
             center
@@ -118,24 +118,24 @@ block content
             center
               a(href="#", onClick="url='/set_out_api_keys?exchange='+document.getElementById('out_exchange').selected+'&subaccount='+document.getElementById('out_exchange_subaccount').value+'&Key='+document.getElementById('outkey').value+'&Secret='+document.getElementById('outkey_secret').value; alert(url); document.location.href=url; ")
                 strong
-                  | ==&gt; set &lt;==
-        td
-          table(width="700pt", bgcolor="#FFDDDD", border="0")
-            tr(width="400pt")
-              td(bgcolor="#FFAAAA")
+                  | (==&gt; set &lt;==)
+        td(class="inner-out-key-td")
+          table(width="700pt", class="inner-table")
+            tr(class="out-key-tr")
+              td(bgcolor="#FFAAAA", class="out-key-td")
                 | Out exchange key name:
-              td(width="400pt", align="right")
-                input(type="text", size="50", readonly, id="outkey", name="outkey", placeholder="Output Key to set ...", autocomplete="API key name", value="")
-            tr
-              td(bgcolor="#FFAAAA")
+              td(width="400pt", align="center", class="out-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="outkey", name="outkey", placeholder="Output Key to set ...", autocomplete="API key name", value="")
+            tr(class="out-key-tr")
+              td(bgcolor="#FFAAAA", class="out-key-td")
                 | Out exchange key secret:
-              td
-                input(type="password", size="50", readonly, id="outkey_secret", name="outkey_secret", placeholder="Output Key Secret to set ...", autocomplete="API key secret", value="")
-            tr
-              td(bgcolor="#FFAAAA")
+              td(width="400pt", align="center", class="out-key-no-td")
+                input(type="password", class="key-input", size="50", readonly, id="outkey_secret", name="outkey_secret", placeholder="Output Key Secret to set ...", autocomplete="API key secret", value="")
+            tr(class="out-key-tr")
+              td(bgcolor="#FFAAAA", class="out-key-td")
                 | Out exchange sub account:
-              td
-                input(type="text", size="50", readonly, id="out_exchange_subaccount", name="out_exchange_subaccount", placeholder="Output exchange sub account to use ...", value="")
+              td(width="400pt", align="center", class="out-key-no-td")
+                input(type="text", class="key-input", size="50", readonly, id="out_exchange_subaccount", name="out_exchange_subaccount", placeholder="Output exchange sub account to use ...", value="")
   p
     center
       input(type="button", id="run_button", value="Start spy bot ...", onClick="document.location.href='/run'")
