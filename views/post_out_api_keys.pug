@@ -1,0 +1,33 @@
+extends setkeys_layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  
+  p
+    table
+      tr
+        td(width="120pt")
+          | <em>API key:</em>
+        td
+          | #{key}
+      tr
+        td
+          | <em>API key secret:</em>
+        td
+          | #{key_secret}
+  p
+    div(id="subaccount_display", hidden="true")
+      table
+        tr
+          td(width="120pt")
+            | SubAccount name:
+          td
+            | #{subaccount}
+  input(id="exchange", type="text", name="exchange", value="", hidden="true")
+  input(type="button", value="Home", onClick="window.location='https://localhost/'")
+  script(type="text/javascript") document.getElementById('exchange').value = #{exchange}; 
+  script(type="text/javascript", src="/javascripts/set_exchange_name.js")
+  script(type="text/javascript", src="/javascripts/disable_subaccount.js")
+  script(type="text/javascript", src="/javascripts/set_param_values.js")
+    

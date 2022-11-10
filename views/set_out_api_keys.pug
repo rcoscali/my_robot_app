@@ -1,0 +1,39 @@
+extends setoutkeys_layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p(id="exchangepara")
+    | #{content}
+
+  form(id="setOutApiKeysForm", method="post", enctype="application/x-www-form-urlencoded", action="/post_out_api_keys")
+    table(width="100%", border="0")
+      tr(bgcolor="#DDFFDD")
+        td(width="120pt")
+          em
+            font
+              | API Key:
+        td
+          input(type="text", id="key", name="key", placeholder="... API key ...")
+      tr(bgcolor="#DDFFDD")
+        td(width="120pt")
+          | <em>API Key Secret:</em>
+        td
+          input(type="text", id="key_secret", name="key_secret", placeholder="... API key secret ...")
+
+    div(id="subaccount_div", hidden="true")
+      table
+        tr
+          td(width="120pt")
+            | <em>SubAccount name:</em>
+          td
+            input(type="text", id="subaccount", name="subaccount", placeholder="... SubAccount name ...", hidden="true")
+
+    input(id="exchange", type="text", name="exchange", value="", hidden="true")
+    input(type="submit", value="Submit", onClick="document.getElementById('exchange').value=getExchange();")
+    input(type="button", value="Cancel", onClick="document.location.href='https://localhost'")
+    input(type="button", value="Delete from DB", onClick="doDelete();")
+    script(type="text/javascript", src="/javascripts/set_exchange_name.js")
+    script(type="text/javascript", src="/javascripts/disable_subaccount.js")
+    script(type="text/javascript", src="/javascripts/set_param_values.js")
+

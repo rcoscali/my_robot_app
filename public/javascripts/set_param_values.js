@@ -8,8 +8,8 @@ function initValues()
 function doDelete()
 {
     document.getElementById('exchange').value=getExchange();
-    document.location.href='https://localhost/delete_from_db?exchange='+getExchange()+'&key='+getKey();     
+    document.location.href='https://localhost/delete_out_from_db?exchange='+getExchange()+'&key='+getKey();
 }
 
-initValues();    
+initValues();
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 const https = require('https');
 var debug = require('debug')('myapp:*,express:*');

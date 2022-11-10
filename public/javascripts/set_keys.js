@@ -14,17 +14,17 @@ if (document.getElementById('kraken_key').value != '' &&
     document.getElementById('binance_key').value != '' &&
     document.getElementById('binance_key_secret').value != '' &&
     document.getElementById('ftx_key').value != '' &&
-    document.getElementById('ftx_key_secret').value != ''
+    document.getElementById('ftx_key_secret').value != '' &&
     document.getElementById('out_exchange').selected != '' &&
     document.getElementById('outkey').value != '' &&
-    document.getElementById('outkey_secret').value != ''
+    document.getElementById('outkey_secret').value != '' &&
     document.getElementById('out_exchange_subaccount').value != ''
    )
 {
-    document.getElementById('run_button').hidden = false;
+    document.getElementById('run_button').active = false;
 }
 else
 {
-    document.getElementById('run_button').hidden = true;
+    document.getElementById('run_button').active = true;
 }
     
